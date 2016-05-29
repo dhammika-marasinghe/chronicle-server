@@ -18,7 +18,7 @@ if (move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $target_path)) {
 
 $cmd = "(echo file $current_story & echo file $target_path) > mylist.txt";
 shell_exec($cmd);
-$cmd = "D:\\ffmpeg\\bin\\ffmpeg -f concat -i mylist.txt -c copy $idstory.3gp";
+$cmd = "D:\\ffmpeg\\bin\\ffmpeg -f concat -i mylist.txt -c copy uploads\\$idstory.3gp";
 $ret = shell_exec($cmd);
 echo $ret;
 
