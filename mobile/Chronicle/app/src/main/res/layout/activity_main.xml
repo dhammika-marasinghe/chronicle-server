@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.illusionbox.www.chronicle.MainActivity"
+    android:background="@mipmap/background">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/progressinactive" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Record and send"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_below="@+id/chronometer"
+        android:layout_alignRight="@+id/btn_upload"
+        android:layout_alignEnd="@+id/btn_upload" />
+
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:id="@+id/btn_record"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/recordinactive"
+        android:scaleType="fitCenter"
+        android:background="@drawable/recordinactive" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:id="@+id/progressBar2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
+        android:max="1000"
+        android:progress="0"
+        android:progressDrawable="@drawable/circular"
+        android:indeterminate="false" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/btn_upload"
+        android:scaleType="fitCenter"
+        android:background="@drawable/doneinactive"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/progressBar2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="New Story"
+        android:id="@+id/next"
+        android:background="@drawable/currenttrackbar"
+        android:layout_below="@+id/imageView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:textColor="#ffffff" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/btn_fx"
+        android:scaleType="fitCenter"
+        android:background="@drawable/effectsinactive"
+        android:layout_alignTop="@+id/btn_upload"
+        android:layout_toRightOf="@+id/btn_record"
+        android:layout_toEndOf="@+id/btn_record" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/btn_cancel"
+        android:scaleType="fitCenter"
+        android:background="@drawable/cancelinactive"
+        android:layout_alignTop="@+id/btn_upload"
+        android:layout_toLeftOf="@+id/btn_record"
+        android:layout_toStartOf="@+id/btn_record" />
+
+    <ImageView
+        android:layout_width="600dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView2"
+        android:background="@drawable/navbar"
+        android:paddingEnd="0dp"
+        android:paddingStart="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/imageView6">
+
+        <Button
+            android:layout_width="66.4dp"
+            android:layout_height="43.2dp"
+            android:id="@+id/button"
+            android:background="@drawable/narrateactive"
+
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="33.6dp"
+            android:layout_height="20.8dp"
+            android:id="@+id/button2"
+            android:background="@drawable/feedinactive"
+            android:layout_marginRight="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="31.2dp"
+            android:layout_height="31.6dp"
+            android:id="@+id/button3"
+            android:background="@drawable/ongoinginactive"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="600dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView4"
+        android:layout_alignTop="@+id/textView"
+        android:background="@drawable/navbar"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/imageView4">
+
+        <ImageView
+            android:layout_width="93.6dp"
+            android:layout_height="71.6dp"
+            android:id="@+id/imageView3"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/branding" />
+
+        <Button
+            android:layout_width="31.6dp"
+            android:layout_height="31.6dp"
+            android:id="@+id/button4"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:background="@drawable/search"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageView3"
+            android:layout_toEndOf="@+id/imageView3" />
+
+        <Button
+            android:layout_width="31.6dp"
+            android:layout_height="31.6dp"
+            android:id="@+id/button5"
+            android:background="@drawable/profile"
+            android:layout_alignTop="@+id/button4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView7"
+            android:background="@drawable/lineseperation"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView6"
+        android:background="@drawable/lineseperation"
+        android:layout_above="@+id/imageView2"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2" />
+
+</RelativeLayout>
