@@ -1,31 +1,47 @@
 <?php
-// Where the file is going to be placed 
-$target_path = "uploads/";
+// createStory
+include("dbconnect.php");
 
-/* Add the original filename to our target path.  
-Result is "uploads/filename.extension" */
-//echo implode(" ",$_FILES);
+$idstory = 0;
+$title = $_POST['title'];
+$email = $_POST['email'];
+$next = $_POST['next'];
 
-echo "filename: " . $_FILES['uploadedFile']['tmp_name'];
+$sql = "INSERT INTO "
+        . "`story`(`title`, `contribution_count`, `state`, `view_count`, `user_email`) "
+        . "VALUES ('$title', 0, 'Ongoing', 0, '$email')";
+echo $sql;
+mysql_query($sql);
 
-$target_path = $target_path . basename( $_FILES['uploadedFile']['name']); 
-//echo pathinfo($target_path, PATHINFO_EXTENSION);
-
-//echo  $_FILES['uploadedFile']['size'];
-//sleep(10);
-
-//echo $_POST['Title'];
-
-
-//if(copy($_FILES['uploadedFile']['tmp_name'], $target_path)){
-if(move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $target_path)) {
-    echo "The file ".  basename( $_FILES['uploadedFile']['name']). 
-    " has been uploaded";
-    // chmod ("uploads/".basename( $_FILES['uploadedFile']['name']), 0644);
-} else{
-    echo "There was an error uploading the file, please try again!";
-    echo "filename: " .  basename( $_FILES['uploadedFile']['name']);
-    echo "target_path: " .$target_path;
-    echo "\n\n".$_FILES['uploadedFile']['error'];
+$sql2 = "SELECT MAX(idstory) AS idstory FROM story";
+$result = mysql_query($sql2);
+while ($row = mysql_fetch_array($result)) {
+    $idstory = $row['idstory'];
 }
+echo $idstory;
+$target_path = "uploads/";
+$target_path = $target_path . $idstory . '.mp3';
+
+if (move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $target_path)) {
+    echo "The file " . basename($_FILES['uploadedFile']['name']) .
+    " has been uploaded";
+
+    $sql3 = "INSERT INTO "
+            . "`contribution`(`story_idstory`, `user_email`,`next`) "
+            . "VALUES ('$idstory', '$email', '$next')";
+    echo $sql3;
+    mysql_query($sql3);
+
+    $sql4 = "UPDATE `story` SET "
+            . "`contribution_count` = contribution_count + 1 "
+            . "WHERE `idstory` = '$idstory'";
+    echo $sql4;
+    mysql_query($sql4);
+} else {
+    echo "There was an error uploading the file, please try again!";
+    echo "filename: " . basename($_FILES['uploadedFile']['name']);
+    echo "target_path: " . $target_path;
+    echo "\n\n" . $_FILES['uploadedFile']['error'];
+}
+mysql_close($con);
 ?>
