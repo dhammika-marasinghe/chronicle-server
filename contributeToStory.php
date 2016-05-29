@@ -7,7 +7,10 @@ $idstory = $_POST['idstory'];
 $email = $_POST['email'];
 $next = $_POST['next'];
 
-$current_story = "uploads/" . $idstory . '.*';
+$current_story = "uploads/" . $idstory . '.3gp';
+$temp_name = "uploads/temp_" . $idstory . '.3gp';
+rename($current_story, $temp_name);
+unlink($current_story);
 $target_path = "uploads/temp.mp3";
 
 if (move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $target_path)) {
@@ -16,9 +19,10 @@ if (move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $target_path)) {
     echo "There was an error uploading the file, please try again!";
 }
 
-$cmd = "(echo file $current_story & echo file $target_path) > mylist.txt";
+$cmd = "(echo file $temp_name & echo file $target_path) > mylist.txt";
 shell_exec($cmd);
-$cmd = "D:\\ffmpeg\\bin\\ffmpeg -f concat -i mylist.txt -c copy uploads\\$idstory.3gp";
+$final_out = "uploads/" . $idstory . '.3gp';
+$cmd = "D:\\ffmpeg\\bin\\ffmpeg -f concat -i mylist.txt -c copy $final_out";
 $ret = shell_exec($cmd);
 echo $ret;
 
@@ -35,4 +39,7 @@ echo $sql4;
 mysql_query($sql4);
 
 mysql_close($con);
+
+unlink($temp_name);
+unlink($target_path);
 ?>

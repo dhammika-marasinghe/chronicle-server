@@ -25,13 +25,13 @@ $target_path = $target_path . $idstory . '.mp3';
 if (move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $target_path)) {
     echo "The file " . basename($_FILES['uploadedFile']['name']) .
     " has been uploaded";
-    
+    //^^mp3
     $cmd = "(echo file $target_path) > mylist.txt";
     shell_exec($cmd);
-    $cmd = "D:\\ffmpeg\\bin\\ffmpeg -f concat -i mylist.txt -c copy uploads\\$idstory.3gp";
+    $final_out = "uploads/" . $idstory . '.3gp';
+    $cmd = "D:\\ffmpeg\\bin\\ffmpeg -f concat -i mylist.txt -c copy $final_out";
     $ret = shell_exec($cmd);
     echo $ret;
-
     $sql3 = "INSERT INTO "
             . "`contribution`(`story_idstory`, `user_email`,`next`) "
             . "VALUES ('$idstory', '$email', '$next')";
@@ -50,4 +50,5 @@ if (move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $target_path)) {
     echo "\n\n" . $_FILES['uploadedFile']['error'];
 }
 mysql_close($con);
+unlink($target_path);//mp3 remove
 ?>
