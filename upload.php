@@ -25,6 +25,12 @@ $target_path = $target_path . $idstory . '.mp3';
 if (move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $target_path)) {
     echo "The file " . basename($_FILES['uploadedFile']['name']) .
     " has been uploaded";
+    
+    $cmd = "(echo file $target_path) > mylist.txt";
+    shell_exec($cmd);
+    $cmd = "D:\\ffmpeg\\bin\\ffmpeg -f concat -i mylist.txt -c copy uploads\\$idstory.3gp";
+    $ret = shell_exec($cmd);
+    echo $ret;
 
     $sql3 = "INSERT INTO "
             . "`contribution`(`story_idstory`, `user_email`,`next`) "
